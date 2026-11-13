@@ -1,0 +1,12 @@
+Options -Indexes
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule ^\.git(?:/|$) - [F,L]
+RewriteRule ^website\.zip\.b64$ - [F,L]
+RewriteRule ^\.well-known/acme-challenge/ - [L]
+RewriteCond %{HTTPS} !=on [OR]
+RewriteCond %{HTTP_HOST} !^www\.garageindebuurt\.be$ [NC]
+RewriteRule ^ https://www.garageindebuurt.be%{REQUEST_URI} [R=301,L,NE]
+</IfModule>
